@@ -23,6 +23,9 @@ Rails.configuration.to_prepare do
     unless Project.included_modules.include?(ScmProjectPatch)
         Project.send(:include, ScmProjectPatch)
     end
+    unless Repository.included_modules.include?(ScmRepositoryPatch)
+        Repository.send(:include, ScmRepositoryPatch)
+    end
     unless RepositoriesHelper.included_modules.include?(ScmRepositoriesHelperPatch)
         RepositoriesHelper.send(:include, ScmRepositoriesHelperPatch)
     end
