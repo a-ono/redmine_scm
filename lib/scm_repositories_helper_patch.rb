@@ -1,5 +1,13 @@
 require_dependency 'repositories_helper'
 
+module RepositoriesHelper
+  def limit_exceeded
+    @project.respond_to?(:repositories) &&
+    ScmConfig['max_repos'] && ScmConfig['max_repos'].to_i > 0 &&
+    @project.repositories.select{ |r| r.created_with_scm }.size >= ScmConfig['max_repos'].to_i
+  end
+end
+
 module ScmRepositoriesHelperPatch
 
     def self.included(base)
@@ -250,14 +258,6 @@ module ScmRepositoriesHelperPatch
             end
 
             githubtags
-        end
-
-    private
-
-        def limit_exceeded
-            @project.respond_to?(:repositories) &&
-            ScmConfig['max_repos'] && ScmConfig['max_repos'].to_i > 0 &&
-            @project.repositories.select{ |r| r.created_with_scm }.size >= ScmConfig['max_repos'].to_i
         end
 
     end
