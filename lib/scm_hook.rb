@@ -24,7 +24,7 @@ class ScmHook  < Redmine::Hook::ViewListener
     end
 
     render_on :view_projects_form, :partial => 'projects/scm'
-
+    render_on :view_repositories_show_contextual, :partial => 'repositories/url'
 private
 
     def project_scm_options_for_select(selected = nil)
