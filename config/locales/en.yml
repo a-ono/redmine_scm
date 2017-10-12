@@ -2,7 +2,8 @@ en:
   button_create_new_repository: Create new repository
 
   label_repository_format: repository
-
+  label_repository_url: Repository URL
+  
   field_scm: SCM
   field_github_url: Github URL
   field_extra_register_hook: Register hook for fetching commits
